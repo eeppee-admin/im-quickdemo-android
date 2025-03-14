@@ -7,7 +7,11 @@ buildscript {
             allowInsecureProtocol = true
             url 'http://developer.huawei.com/repo/' }
         google()
-        jcenter()
+//        jcenter()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://repo.huaweicloud.com/repository/maven' }
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.1'

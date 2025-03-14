@@ -90,7 +90,7 @@ dependencies {
     implementation 'cn.rongcloud.sdk:im_kit:5.2.4'
 
     //日志展示
-    debugImplementation 'com.github.getActivity:Logcat:10.6'
+    debugImplementation 'com.github.getActivity:Logcat:11.8'
     implementation 'com.huawei.hms:push:6.5.0.300'
     implementation 'com.meizu.flyme.internet:push-internal:4.1.4@aar'
     //以下依赖都需要添加
