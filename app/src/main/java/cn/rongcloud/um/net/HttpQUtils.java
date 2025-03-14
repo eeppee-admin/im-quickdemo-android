@@ -34,8 +34,8 @@ public class HttpQUtils {
     private static String mAppSecret;
     private static String mAppkey;
 
+    // 获取注册用户token
     @NotNull
-
     public static void getToken(@NotNull final String appKey, @NotNull final String appSecret, @NotNull final String userId, @NotNull final GetTokenCallback callback) {
         Intrinsics.checkNotNullParameter(appKey, "appKey");
         Intrinsics.checkNotNullParameter(appSecret, "appSecret");
@@ -43,6 +43,7 @@ public class HttpQUtils {
         Intrinsics.checkNotNullParameter(callback, "callback");
         mAppSecret = appSecret;
         mAppkey = appKey;
+        // 开启一个线程
         (new Thread((Runnable) (new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             public final void run() {
@@ -57,6 +58,7 @@ public class HttpQUtils {
                     GetTokenCallback var10000;
                     String var10001;
                     try {
+                        // 请求
                         URLConnection var21 = (new URL(Constants.BASE_URL + "/user/getToken.json")).openConnection();
                         if (var21 == null) {
                             throw new NullPointerException("null cannot be cast to non-null type java.net.HttpURLConnection");
@@ -153,6 +155,7 @@ public class HttpQUtils {
         }))).start();
     }
 
+    // byte[]转换成hex String
     @RequiresApi(api = Build.VERSION_CODES.N)
     private static String convertToHex(byte[] data) {
         StringBuilder buf = new StringBuilder();
@@ -201,18 +204,21 @@ public class HttpQUtils {
         }
     }
 
+    // 获取token的回调
     public interface GetTokenCallback {
         void onGetTokenSuccess(@NotNull String token);
 
         void onGetTokenFailed(@NotNull String err);
     }
 
+    // 创建超级群
     @NotNull
     public static void createUltraGroup(@NotNull final String userId, @NotNull final String groupId, @NotNull final String groupName, @NotNull final CreateUltraGroupCallBack callback) {
         Intrinsics.checkNotNullParameter(userId, "userId");
         Intrinsics.checkNotNullParameter(groupId, "groupId");
         Intrinsics.checkNotNullParameter(groupName, "groupName");
         Intrinsics.checkNotNullParameter(callback, "callback");
+        // 开启线程
         (new Thread((Runnable) (new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             public final void run() {
@@ -320,12 +326,14 @@ public class HttpQUtils {
         }))).start();
     }
 
+    // 超级群回调
     public interface CreateUltraGroupCallBack {
         void onSuccess();
 
         void onFailed(@NotNull String err);
     }
 
+    // 创建频道
     @NotNull
     public static void createChannel(@NotNull final String groupId, @NotNull final String busChannel, @NotNull final CreateChannelCallBack callback) {
         Intrinsics.checkNotNullParameter(groupId, "groupId");
@@ -444,6 +452,7 @@ public class HttpQUtils {
         void onFailed(@NotNull String err);
     }
 
+    // 加入超级群聊
     @NotNull
     public static void joinUltraGroup(@NotNull final String userId, @NotNull final String groupId, @NotNull final JoinUltraGroupCallBack callback) {
         Intrinsics.checkNotNullParameter(userId, "userId");
@@ -562,8 +571,8 @@ public class HttpQUtils {
         void onFailed(@NotNull String err);
     }
 
+    // 获取频道列表
     @NotNull
-
     public static void getChannelList(@NotNull final String groupId, @NotNull final int page, @NotNull final int limit, @NotNull final GetChannelInfosCallBack callback) {
         Intrinsics.checkNotNullParameter(groupId, "groupId");
         Intrinsics.checkNotNullParameter(callback, "callback");
@@ -690,8 +699,8 @@ public class HttpQUtils {
         void onFailed(@NotNull String err);
     }
 
+    // todo: 创建群组， 这个需要
     @NotNull
-
     public static void createGroup(@NotNull final String userId, @NotNull final String groupId, @NotNull final CreatGroupCallBack callback) {
         Intrinsics.checkNotNullParameter(userId, "userId");
         Intrinsics.checkNotNullParameter(groupId, "groupId");
@@ -810,8 +819,8 @@ public class HttpQUtils {
         void onFailed(@NotNull String err);
     }
 
+    // todo: 加入群组，这个需要
     @NotNull
-
     public static void joinGroup(@NotNull final String userId, @NotNull final String groupId, @NotNull final JoinGroupCallBack callback) {
         Intrinsics.checkNotNullParameter(userId, "userId");
         Intrinsics.checkNotNullParameter(groupId, "groupId");
@@ -930,8 +939,8 @@ public class HttpQUtils {
         void onFailed(@NotNull String err);
     }
 
+    // todo: 退出群组，这个需要
     @NotNull
-
     public static void quitGroup(@NotNull final String userId, @NotNull final String groupId, @NotNull final QuitGroupCallBack callback) {
         Intrinsics.checkNotNullParameter(userId, "userId");
         Intrinsics.checkNotNullParameter(groupId, "groupId");
@@ -1050,8 +1059,8 @@ public class HttpQUtils {
         void onFailed(@NotNull String err);
     }
 
+    // 查询群组
     @NotNull
-
     public static void queryGroup(@NotNull final String groupId, @NotNull final QueryGroupCallBack callback) {
         Intrinsics.checkNotNullParameter(groupId, "groupId");
         Intrinsics.checkNotNullParameter(callback, "callback");

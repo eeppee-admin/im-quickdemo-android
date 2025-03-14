@@ -8,14 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--        todo: 不需要头部-->
         <cn.rongcloud.um.ui.widget.TopBar
             android:id="@+id/top_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hideBack="true"
             app:centerText="会话列表"
-            app:rightIcon="@drawable/icon_main_more"/>
+            app:hideBack="true"
+            app:rightIcon="@drawable/icon_main_more" />
 
+        <!--        todo: 中间会话信息，为什么不需要滑动效果-->
         <cn.rongcloud.um.ui.widget.NoScrollViewPager
             android:id="@+id/container"
             android:layout_width="match_parent"
@@ -23,6 +25,7 @@
             android:layout_above="@id/main_bottom_barr"
             android:layout_below="@id/top_bar" />
 
+        <!--        todo:不需要底部-->
         <cn.rongcloud.um.ui.widget.BottomTabLayout
             android:id="@+id/main_bottom_barr"
             android:layout_width="match_parent"

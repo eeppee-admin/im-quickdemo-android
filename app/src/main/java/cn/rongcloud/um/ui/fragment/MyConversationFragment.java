@@ -14,12 +14,15 @@ import io.rong.imkit.IMCenter;
 import io.rong.imkit.config.ConversationClickListener;
 import io.rong.imkit.conversation.ConversationFragment;
 import io.rong.imkit.event.actionevent.RefreshEvent;
+import io.rong.imkit.picture.tools.ToastUtils;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
 import io.rong.imlib.model.UserInfo;
 
+// 我的聊天页面，具体可以发送消息的聊天页面
 public class MyConversationFragment extends ConversationFragment {
+    //todo: 为什么这里没有布局
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -28,16 +31,21 @@ public class MyConversationFragment extends ConversationFragment {
 
     private void initListener() {
         IMCenter.setConversationClickListener(new ConversationClickListener() {
+            // 头像点击事件
             @Override
             public boolean onUserPortraitClick(Context context, Conversation.ConversationType conversationType, UserInfo user, String targetId) {
-                return false;
+                ToastUtils.s(getContext(), "点击了头像");
+                return true;
             }
 
+            // 头像长按事件
             @Override
             public boolean onUserPortraitLongClick(Context context, Conversation.ConversationType conversationType, UserInfo user, String targetId) {
-                return false;
+                ToastUtils.s(getContext(), "长按了头像");
+                return true;
             }
 
+            // 聊天消息点击事件
             @Override
             public boolean onMessageClick(Context context, View view, Message message) {
                 if (message.getContent() instanceof CustomMessage) {
@@ -48,6 +56,7 @@ public class MyConversationFragment extends ConversationFragment {
                     RongIMClient.getInstance().updateMessageExpansion(expansion, message.getUId(), new RongIMClient.OperationCallback() {
                         @Override
                         public void onSuccess() {
+                            // 使用IMKit 内置的对消息更新
                             mMessageViewModel.onRefreshEvent(new RefreshEvent(message));
                         }
 

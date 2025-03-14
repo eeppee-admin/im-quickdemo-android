@@ -62,8 +62,11 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         mViewData.topBar.setOnRightIconClickListener(view -> {
             showChatPopupWindow();
         });
+        // 接收消息监听器
         RongIM.addOnReceiveMessageListener(onReceiveMessageWrapperListener);
+        // 同步会话状态监听器
         IMCenter.getInstance().addSyncConversationReadStatusListener(syncConversationReadStatusListener);
+        // 添加连接状态监听器
         RongCoreClient.addConnectionStatusListener(conversationStatusListener);
     }
 
@@ -135,14 +138,21 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     }
 
     private void initBottomTab() {
-        mListFrg.add(new MyConversationListFragment());
-        mListFrg.add(new DoMainListFragment());
-        mListFrg.add(new MineFragment());
+        // 初始化Fragment页面内容以加载进入viewpager
+        mListFrg.add(new MyConversationListFragment()); // 这个Fragment集成了Imkit的内容
+        mListFrg.add(new DoMainListFragment()); // 这个是功能清单页面内容
+        mListFrg.add(new MineFragment()); // 这个是我的页面内容
+
+
+        // todo: 配置NoScrollViewPager
         ViewPagerAdapter mainFragmentAdapter = new ViewPagerAdapter(getSupportFragmentManager(), mListFrg);
         mViewData.container.setAdapter(mainFragmentAdapter);
-        mViewData.container.setNoScroll(false);
+        mViewData.container.setNoScroll(false); // 可以滑动
         mViewData.container.setOffscreenPageLimit(1);
+
         mViewData.mainBottomBarr.setUpWithViewPager(mViewData.container);
+
+        // 设置头部标题栏
         mViewData.mainBottomBarr.setOnItemTabClickListener(new BottomTabLayout.OnItemTabClickListener() {
             @Override
             public boolean onItemTabClick(int position, View itemView) {
@@ -159,8 +169,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
                         mViewData.topBar.setCenterText("我的");
                         mViewData.topBar.getIvRight().setVisibility(View.GONE);
                         break;
-
-
                 }
                 return false;
             }
@@ -178,7 +186,7 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     RongIMClient.OnReceiveMessageWrapperListener onReceiveMessageWrapperListener = new RongIMClient.OnReceiveMessageWrapperListener() {
         @Override
         public boolean onReceived(Message message, int left, boolean hasPackage, boolean offline) {
-            Log.i("message",message.toString());
+            Log.i("message", message.toString());
             getUnreadCount();
             return false;
         }

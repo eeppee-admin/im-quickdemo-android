@@ -3,6 +3,8 @@ package cn.rongcloud.um.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+
+// 会话管理， SP 管理
 public class SessionManager {
     private static final String SETTIING_OPTIONS = "SETTIING_OPTIONS";
     private static SharedPreferences sharedPreferences;

@@ -5,6 +5,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+
+// 抽象 ViewModel
 public abstract class BaseViewModel extends AndroidViewModel {
 
     public BaseViewModel(@NonNull Application application) {

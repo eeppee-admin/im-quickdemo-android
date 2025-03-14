@@ -6,8 +6,11 @@ package cn.rongcloud.um.base;
 public final class Constants {
 
     public static final String BASE_URL = "https://api-cn.ronghub.com";
+    // 默认app secret ， 融云
     public static final String SECRET = "EXCZVCZaJDMi";
+    // 默认app key
     public static final String APP_KEY = "p5tvi9dst19k4";
+    // 默认展示的用户id
     public static final String USER_ID = "1";
     public static final String PRIVATE = "1";
     public static final String GROUP = "3";
@@ -20,11 +23,11 @@ public final class Constants {
     /**
      * ======================   sp key  start   ==============================
      */
-    public static final String SP_KEY_APP_KEY = "appKey";
-    public static final String SP_KEY_APP_SECRET = "appSecret";
+    public static final String SP_KEY_APP_KEY = "appKey"; // p5tvi9dst19k4
+    public static final String SP_KEY_APP_SECRET = "appSecret"; // EXCZVCZaJDMi
     public static final String SP_KEY_NAV_URL = "naviServer";
     public static final String SP_KEY_FILE_URL = "fileServer";
-    public static final String SP_KEY_APP_TOKEN = "token";
+    public static final String SP_KEY_APP_TOKEN = "token"; // todo token可能需要网络请求
     public static final String SP_KEY_LANGUAGE_SETTING = "LanguageServer";
     public static final String SP_KEY_CONVERSATION_TYPE = "conversationType";
     public static final String SP_KEY_SUB_CONVERSATION_TYPE = "subConversationType";
@@ -33,6 +36,7 @@ public final class Constants {
     /**
      * ======================   default avatar start   ==============================
      */
+    // 头像链接
     public static final String[] DefaultAvatar = new String[]{
             "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13617583465%2F1000.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662279145&t=89a2a4e3468cfe398fc41b54c3506c71",
             "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2F62%2F3b%2Fe1%2F623be1bed1dcdbc71ee2dc3c28505aed.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1662279208&t=6ddad26308b44841c3dc7afc7887ff2c",

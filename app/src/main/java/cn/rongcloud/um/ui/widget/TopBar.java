@@ -21,6 +21,7 @@ import androidx.core.view.ViewCompat;
 
 import cn.rongcloud.um.R;
 
+// 头部布局
 public class TopBar extends Toolbar {
 
     private static final int DEFAULT_TITLE_SIZE_IN_SP = 16;

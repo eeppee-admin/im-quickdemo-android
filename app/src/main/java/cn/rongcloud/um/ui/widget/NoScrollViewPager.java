@@ -11,8 +11,9 @@ import androidx.viewpager.widget.ViewPager;
 public class NoScrollViewPager extends ViewPager {
 
     /**
-     * 默认不可滚动
-     */    private boolean mNoScroll=true;
+     * todo: 默认不可滚动
+     */
+    private boolean mNoScroll = true;
 
     public NoScrollViewPager(@NonNull Context context) {
         super(context);
@@ -26,6 +27,7 @@ public class NoScrollViewPager extends ViewPager {
         this.mNoScroll = noScroll;
     }
 
+    // todo： 触摸事件
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         //如果viewpager中的view不是viewgroup则会执行该方法 所以也需要进行处理
@@ -42,7 +44,8 @@ public class NoScrollViewPager extends ViewPager {
          * This method JUST determines whether we want to intercept thmotion.
          * If we return true, onMotionEvent will be called and we do thactual
          * scrolling there.
-         */        if (mNoScroll) {
+         */
+        if (mNoScroll) {
             //不拦截 传递给子view去处理 这样左右滚动的事件将在子view中，而viewpager本身则不用处理
             return false;
         } else {

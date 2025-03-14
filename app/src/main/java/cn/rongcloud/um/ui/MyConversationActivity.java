@@ -17,11 +17,14 @@ import io.rong.imkit.utils.RouteUtils;
 import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Conversation;
 
+
+// 具体聊天对话页面
 public class MyConversationActivity extends BaseActivity<MainViewModel, RcActivityMyConversationBinding> {
     protected String mTargetId;
     protected Conversation.ConversationType mConversationType;
     private MyConversationFragment conversationFragment;
 
+    // 容器布局
     @Override
     public int getContentViewId() {
         return R.layout.rc_activity_my_conversation;
@@ -38,6 +41,7 @@ public class MyConversationActivity extends BaseActivity<MainViewModel, RcActivi
             } else {
                 return;
             }
+            // 设置为对方的用户id, userId
             if (!TextUtils.isEmpty(mTargetId)) {
                 mViewData.topBar.setCenterText(mTargetId);
             }
@@ -46,6 +50,7 @@ public class MyConversationActivity extends BaseActivity<MainViewModel, RcActivi
         conversationFragment = new MyConversationFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
+        // 替换页面
         transaction.replace(R.id.container, conversationFragment);
         transaction.commit();
     }

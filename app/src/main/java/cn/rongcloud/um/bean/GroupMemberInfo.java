@@ -1,5 +1,8 @@
 package cn.rongcloud.um.bean;
 
+
+
+// 组员信息
 public class GroupMemberInfo {
     private String id;
 

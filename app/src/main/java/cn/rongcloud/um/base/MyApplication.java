@@ -54,6 +54,7 @@ public class MyApplication extends Application {
             @Override
             public boolean onNotificationMessageClicked(Context context, PushType pushType, PushNotificationMessage notificationMessage) {
 
+                // 去到登录
                 Intent intent = new Intent(getContext(),LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);

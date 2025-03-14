@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 
 import cn.rongcloud.um.R;
 
+// 底部视图
 public class BottomTabView extends RelativeLayout {
     private static final String TAG = "BottomTabView";
     private Drawable drawableN;

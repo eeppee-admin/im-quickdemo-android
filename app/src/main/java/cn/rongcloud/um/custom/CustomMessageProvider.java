@@ -20,6 +20,7 @@ import io.rong.imkit.widget.adapter.IViewProviderListener;
 import io.rong.imkit.widget.adapter.ViewHolder;
 import io.rong.imlib.model.MessageContent;
 
+// todo: 实现融云类
 public class CustomMessageProvider extends BaseMessageItemProvider<CustomMessage> {
     public CustomMessageProvider() {
         mConfig.showReadState = true;
@@ -27,6 +28,7 @@ public class CustomMessageProvider extends BaseMessageItemProvider<CustomMessage
 
     @Override
     protected ViewHolder onCreateMessageContentViewHolder(ViewGroup viewGroup, int i) {
+        // 聊天 + 号点击自定义消息   item_custom.xml
         View mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_custom, viewGroup, false);
         return new ViewHolder(viewGroup.getContext(), mView);
     }

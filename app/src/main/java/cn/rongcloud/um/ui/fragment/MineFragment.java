@@ -29,7 +29,10 @@ import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Group;
 import io.rong.imlib.model.UserInfo;
 
+// todo: 我的页面
 public class MineFragment extends BaseFragment<MainViewModel, FragmentMineBinding> implements View.OnClickListener, RongUserInfoManager.UserDataObserver {
+//   下文的 mViewData就是viewbinding的binding
+
     private boolean isBlock;
     private boolean isPushContent;
 
@@ -82,6 +85,7 @@ public class MineFragment extends BaseFragment<MainViewModel, FragmentMineBindin
         });
     }
 
+    // todo: 获取用户头像
     private void getUserPortrait() {
         String currentUserId = RongIM.getInstance().getCurrentUserId();
         if (currentUserId == null) return;
@@ -90,6 +94,7 @@ public class MineFragment extends BaseFragment<MainViewModel, FragmentMineBindin
                 .getUserInfo(currentUserId);
         if (userInfo != null) {
             Uri uri = userInfo.getPortraitUri();
+            // 加载头像
             if (uri != null) {
                 Glide.with(mViewData.rcMinePortrait).load(uri).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(mViewData.rcMinePortrait);
             }

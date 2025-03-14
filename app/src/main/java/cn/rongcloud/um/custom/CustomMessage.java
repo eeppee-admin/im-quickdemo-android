@@ -13,6 +13,9 @@ import io.rong.imlib.MessageTag;
 import io.rong.imlib.model.UserInfo;
 import io.rong.message.MediaMessageContent;
 
+
+
+
 @MessageTag(value = "app:custom", flag = MessageTag.ISCOUNTED | MessageTag.ISPERSISTED)
 public class CustomMessage extends MediaMessageContent {
 

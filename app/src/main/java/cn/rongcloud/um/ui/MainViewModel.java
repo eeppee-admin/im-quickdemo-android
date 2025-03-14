@@ -10,6 +10,7 @@ import cn.rongcloud.um.base.BaseViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+// 主页viewmodel
 public class MainViewModel extends BaseViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);

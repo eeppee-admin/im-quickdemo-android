@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.ViewPager;
 
+
+// 自定义底部Tab布局，我自己不用设置
 public class BottomTabLayout extends LinearLayout {
     private static final String TAG = "BottomTabLayout";
     private OnItemTabClickListener onItemTabClickListener;

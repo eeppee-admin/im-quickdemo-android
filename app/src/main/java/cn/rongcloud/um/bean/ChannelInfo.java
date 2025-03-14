@@ -1,5 +1,6 @@
 package cn.rongcloud.um.bean;
 
+// 频道信息
 public class ChannelInfo {
     private String channelId;
     private String createTime;

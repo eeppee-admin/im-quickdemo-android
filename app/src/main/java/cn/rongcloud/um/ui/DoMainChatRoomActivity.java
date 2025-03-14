@@ -17,6 +17,8 @@ import io.rong.imlib.chatroom.base.RongChatRoomClient;
 import io.rong.imlib.model.Conversation;
 import io.rong.imlib.model.Message;
 
+
+// todo: chatroom暂时不需要看
 public class DoMainChatRoomActivity extends BaseActivity<MainViewModel, ActivityDoMainChatRoomBinding> {
 
     @Override
@@ -26,9 +28,12 @@ public class DoMainChatRoomActivity extends BaseActivity<MainViewModel, Activity
 
     @Override
     public void setView() {
-        mViewData.contentListview.setAdapter(new ArrayAdapter<>(this,
-                R.layout.picklist_text,
-                new String[]{"加入聊天室", "退出聊天室", "获取聊天室历史消息", "设置kv", "获取kv"}));
+        // 设置数组Adapter, 就简单设置文字效果
+        mViewData.contentListview.setAdapter(
+                new ArrayAdapter<>(
+                        this,
+                        R.layout.picklist_text,
+                        new String[]{"加入聊天室", "退出聊天室", "获取聊天室历史消息", "设置kv", "获取kv"}));
         initListener();
     }
 

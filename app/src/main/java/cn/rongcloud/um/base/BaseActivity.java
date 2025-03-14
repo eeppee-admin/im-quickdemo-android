@@ -24,6 +24,7 @@ import io.rong.imkit.picture.tools.ToastUtils;
  * @param <Vdb> Ui控制
  */
 public abstract class BaseActivity<Vm extends BaseViewModel, Vdb extends ViewDataBinding> extends AppCompatActivity {
+    // 获取布局id
     public abstract int getContentViewId();
 
     public abstract void setView();//设置UI相关
@@ -40,6 +41,7 @@ public abstract class BaseActivity<Vm extends BaseViewModel, Vdb extends ViewDat
                 finish();
                 return;
         }
+        // 设置布局
         setContentView(getContentViewId());
         mViewData = DataBindingUtil.setContentView(this, getContentViewId());
         mViewData.setLifecycleOwner(this);
@@ -59,7 +61,7 @@ public abstract class BaseActivity<Vm extends BaseViewModel, Vdb extends ViewDat
             } else {
                 modelClass = BaseViewModel.class;
             }
-
+            // 创建viewmodel
             mViewModel = (Vm) new ViewModelProvider(this).get(modelClass);
 
         }

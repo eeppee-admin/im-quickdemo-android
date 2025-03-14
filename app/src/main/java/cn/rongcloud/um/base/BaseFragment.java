@@ -19,6 +19,7 @@ import java.lang.reflect.Type;
 
 import io.rong.imkit.picture.tools.ToastUtils;
 
+// 抽象类 Fragment使用
 public abstract class BaseFragment<Vm extends BaseViewModel, Vdb extends ViewDataBinding> extends Fragment implements DataBindingProvider {
     public Vm mViewModel;
     public Vdb mViewData;

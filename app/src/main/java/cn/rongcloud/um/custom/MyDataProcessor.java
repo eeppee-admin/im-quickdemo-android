@@ -9,6 +9,7 @@ import cn.rongcloud.um.base.Constants;
 import io.rong.imkit.config.BaseDataProcessor;
 import io.rong.imlib.model.Conversation;
 
+// 数据处理
 public class MyDataProcessor extends BaseDataProcessor<Conversation> {
     /**
      * 自定义会话列表页面支持的会话类型。

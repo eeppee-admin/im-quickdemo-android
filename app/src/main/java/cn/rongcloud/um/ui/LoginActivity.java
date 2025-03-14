@@ -72,12 +72,16 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
 
     @Override
     public void setView() {
-
+        // 拿到appkey
         appKeySp = SessionManager.getInstance().getString(Constants.SP_KEY_APP_KEY);
+        // 拿到appsecret
         String appSecretSp = SessionManager.getInstance().getString(Constants.SP_KEY_APP_SECRET);
+        // 拿到token
         String token = SessionManager.getInstance().getString(Constants.SP_KEY_APP_TOKEN);
         if (!TextUtils.isEmpty(token)) {
+            // 初始化融云通过appkey
             initRC(appKeySp);
+            // 通过token来连接融云
             connectIM(token);
             return;
         }
@@ -119,6 +123,7 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
     }
 
     private void initRC(String appKey) {
+        // todo: 这里主要做初始化
         if (IMCenter.getInstance().isInitialized()) {
             RongIM.getInstance().disconnect();
             // 初始化融云SDK
@@ -130,12 +135,16 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
 
         // 在打开会话列表页面之前，调用设置自定义的数据处理器
         DataProcessorUtil.conversationTypes = DataProcessorUtil.supportedTypes();
+        // 配置
         RongConfigCenter.conversationListConfig().setDataProcessor(new MyDataProcessor());
+        // 消息
         ArrayList<Class<? extends MessageContent>> myMessages = new ArrayList<>();
         myMessages.add(CustomMessage.class);
+        // 注册消息类型
         RongIMClient.registerMessageType(myMessages);
         RongConfigCenter.conversationConfig().addMessageProvider(new CustomMessageProvider());
         RongExtensionManager.getInstance().setExtensionConfig(new MyExtensionConfig());
+        // todo: 注册 Activity
         RouteUtils.registerActivity(RouteUtils.RongActivityType.ConversationListActivity, MainActivity.class);
         RouteUtils.registerActivity(RouteUtils.RongActivityType.ConversationActivity, MyConversationActivity.class);
         // 初始化用户和群组信息内容提供者
@@ -147,14 +156,18 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
     }
 
     /**
-     * 获取token
+     * todo: 获取token
      */
     private void getToken() {
-        HttpQUtils.getToken(mViewData.editAppkey.getText().toString(), mViewData.editSecret.getText().toString(), mViewData.editUserid.getText().toString(),
+        // 网络获取token, 传入appkey, appsecret, userId 以获得token
+        HttpQUtils.getToken(
+                mViewData.editAppkey.getText().toString(),
+                mViewData.editSecret.getText().toString(),
+                mViewData.editUserid.getText().toString(),
                 new HttpQUtils.GetTokenCallback() {
                     @Override
                     public void onGetTokenSuccess(@NonNull String token) {
-
+                        // 从EditText获取
                         String appKey = mViewData.editAppkey.getText().toString();
                         String appSecret = mViewData.editSecret.getText().toString();
                         if (TextUtils.isEmpty(appKeySp)) {
@@ -179,11 +192,14 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
                 });
     }
 
+    // todo: 根据token来连接到IM中心的, token可能随时变化
     private void connectIM(@NonNull String token) {
+        // todo: 连接
         RongIM.connect(token, new RongIMClient.ConnectCallback() {
             @Override
             public void onSuccess(String t) {
                 Log.i("connect_success", t);
+                // token存入SP
                 SessionManager.getInstance().put(Constants.SP_KEY_APP_TOKEN, token);
                 goActivity(MainActivity.class);
                 finish();
@@ -192,8 +208,8 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
             @Override
             public void onError(RongIMClient.ConnectionErrorCode e) {
                 Log.i("connect_error", e.name());
-                if (e.equals(RongIMClient.ConnectionErrorCode.RC_CONNECTION_EXIST)) {
                     //连接已存在 直接跳转到主页面
+                if (e.equals(RongIMClient.ConnectionErrorCode.RC_CONNECTION_EXIST)) {
                     goActivity(MainActivity.class);
                     finish();
                 }
@@ -202,11 +218,13 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
 
             @Override
             public void onDatabaseOpened(RongIMClient.DatabaseOpenStatus code) {
+                // 连接数据库
                 Log.i("connect_database", code.name());
             }
         });
     }
 
+    //
     private void sendAllPerson() {
         RongExtensionManager.getInstance()
                 .addExtensionEventWatcher(
@@ -261,9 +279,6 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
                         });
     }
 
-    /**
-     * 设置保存用户头像等信息
-     */
     public void initInfoProvider() {
 
         // 单聊用户信息提供者
@@ -345,12 +360,13 @@ public class LoginActivity extends BaseActivity<MainViewModel, ActivityLoginBind
     }
 
     /**
-     * 融云头像设置圆形
+     * todo: 融云头像设置圆形，但是这里的都想url没有配置
      */
     public void initRongPortrait() {
         RongConfigCenter.featureConfig().setKitImageEngine(new GlideKitImageEngine() {
             @Override
             public void loadConversationPortrait(@NonNull Context context, @NonNull String url, @NonNull ImageView imageView, Message message) {
+                // Glide 加载
                 Glide.with(imageView).load(url)
 
                         .apply(RequestOptions.bitmapTransform(new CircleCrop()))
